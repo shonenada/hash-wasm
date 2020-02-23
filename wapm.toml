@@ -1,9 +1,10 @@
 [package]
-name = "hash"
-version = "0.0.1"
+name = "shonenada/hash"
+version = "0.0.0-develop"
 description = "Hash tools written for AssemblyScript"
 license = "BSD-3-Clause"
 repository = "https://github.com/shonenada/hash-wapm.git"
+readme = "./README.md"
 
 [[module]]
 name = "hash"
