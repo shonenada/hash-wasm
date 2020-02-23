@@ -1,6 +1,13 @@
+import { Console } from "../node_modules/as-wasi/assembly";
+
 export class Base64 {
+
     static PADDING: string = "=";
     static ALPHAS: string = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
+
+    private static getByte64(s: string, i: i32): i32 {
+        return this.ALPHAS.indexOf(s.charAt(i));
+      }
 
     private static bytes2group(raw: string, startIdx: i32): i32 {
         const b1 = raw.charCodeAt(startIdx + 0) << 16;
@@ -56,6 +63,53 @@ export class Base64 {
             rv.push(rs[2]);
             rv.push(this.PADDING);
         }
+        return rv.join('');
+    }
+
+    static decode(raw: string): string {
+        const len = raw.length;
+
+        if (len === 0) {
+            return raw;
+        }
+
+        let pads = 0;
+        let upper = len;
+        if (raw.charAt(len - 2) == this.PADDING) {
+            pads = 2;
+            upper -= 4;
+        } else if (raw.charAt(len - 1) == this.PADDING){
+            pads = 1;
+            upper -= 4;
+        }
+
+        let rv: Array<string> = [];
+        let i: i32;
+        for (i=0; i<upper; i += 4) {
+            const b1 = this.getByte64(raw, i) << 18;
+            const b2 = this.getByte64(raw, i + 1) << 12;
+            const b3 = this.getByte64(raw, i + 2) << 6;
+            const b4 = this.getByte64(raw, i + 3) << 0;
+            const buffer = b1 | b2 | b3 | b4;
+            rv.push(String.fromCharCode(buffer >> 16 & 0b11111111));
+            rv.push(String.fromCharCode(buffer >> 8 & 0b11111111));
+            rv.push(String.fromCharCode(buffer >> 0 & 0b11111111));
+        }
+
+        if (pads === 1) {
+            const b1 = this.getByte64(raw, i + 0) << 18;
+            const b2 = this.getByte64(raw, i + 1) << 12;
+            const b3 = this.getByte64(raw, i + 1) << 6;
+            const buffer = b1 | b2 | b3;
+            rv.push(String.fromCharCode(buffer >> 16 & 0b11111111));
+            rv.push(String.fromCharCode(buffer >> 8 & 0b11111111));
+        } else if (pads === 2) {
+            const b1 = this.getByte64(raw, i + 0) << 18;
+            const b2 = this.getByte64(raw, i + 1) << 12;
+            const buffer = b1 | b2 ;
+            rv.push(String.fromCharCode(buffer >> 16));
+        }
+
         return rv.join('');
     }
 
