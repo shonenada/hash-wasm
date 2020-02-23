@@ -1,0 +1,18 @@
+[package]
+name = "hash"
+version = "0.0.1"
+description = "Hash tools written for AssemblyScript"
+license = "BSD-3-Clause"
+repository = "https://github.com/shonenada/hash-wapm.git"
+
+[[module]]
+name = "hash"
+source = "build/hash.wasm"
+abi = "wasi"
+
+[module.interfaces]
+wasi = "0.0.0-unstable"
+
+[[command]]
+name = "hash"
+module = "hash"
