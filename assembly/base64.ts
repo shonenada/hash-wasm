@@ -1,4 +1,3 @@
-import { Console } from '../node_modules/as-wasi/assembly';
 export class Base64 {
     static PADDING: string = "=";
     static ALPHAS: string = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
