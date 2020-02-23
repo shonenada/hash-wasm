@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "asbuild:debug": "asc assembly/index.ts -b build/debug.wasm -t build/debug.wat --validate --sourceMap --debug --use abort=wasiabort",
-    "asbuild": "asc assembly/index.ts -b build/hash.wasm -t build/hash.wat --validate --optimize --use abort=wasiabort"
+    "asbuild:debug": "asc assembly/index.ts -b build/debug.wasm -t build/debug.wat --validate --sourceMap --debug --use abort=wasiabort --runtime stub",
+    "asbuild": "asc assembly/index.ts -b build/hash.wasm -t build/hash.wat --validate -O3 --use abort=wasiabort --runtime stub"
   },
   "repository": {
     "type": "git",
