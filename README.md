@@ -1,3 +1,3 @@
-# hash-wapm
+# Hash
 
 Hash tools written for AssemblyScript.

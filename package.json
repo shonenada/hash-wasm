@@ -1,5 +1,5 @@
 {
-  "name": "hash-wapm",
+  "name": "hash-wasm",
   "version": "0.0.1",
   "description": "Hash tools written for AssemblyScript.",
   "main": "index.js",
@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/shonenada/hash-wapm.git"
+    "url": "git+https://github.com/shonenada/hash-wasm.git"
   },
   "keywords": [
     "hash",
@@ -20,9 +20,9 @@
   "author": "shonenada",
   "license": "BSD-3-Clause",
   "bugs": {
-    "url": "https://github.com/shonenada/hash-wapm/issues"
+    "url": "https://github.com/shonenada/hash-wasm/issues"
   },
-  "homepage": "https://github.com/shonenada/hash-wapm#readme",
+  "homepage": "https://github.com/shonenada/hash-wasm#readme",
   "devDependencies": {
     "as-wasi": "0.0.1",
     "assemblyscript": "^0.9.2"
