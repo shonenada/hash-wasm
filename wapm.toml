@@ -1,6 +1,6 @@
 [package]
 name = "shonenada/hash"
-version = "0.0.0"
+version = "0.1.0"
 description = "Hash tools written for AssemblyScript"
 license = "BSD-3-Clause"
 repository = "https://github.com/shonenada/hash-wasm"
